@@ -168,7 +168,7 @@ class SeatPage extends StatelessWidget {
       children: [
         Expanded(
           child: Text(
-            "startStation",
+            startStation,
             textAlign: TextAlign.center,
             style: TextStyle(
               fontSize: 30,
@@ -183,7 +183,7 @@ class SeatPage extends StatelessWidget {
         ),
         Expanded(
           child: Text(
-            "endStation",
+            endStation,
             textAlign: TextAlign.center,
             style: TextStyle(
               fontSize: 30,

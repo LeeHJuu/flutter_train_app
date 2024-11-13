@@ -52,15 +52,17 @@ class _HomePageState extends State<HomePage> {
               height: 56,
               child: ElevatedButton(
                 onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) {
-                      return SeatPage(
-                        startStation: startStation,
-                        endStation: endStation,
-                      );
-                    }),
-                  );
+                  if (startStation != "" && endStation != "") {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) {
+                        return SeatPage(
+                          startStation: startStation,
+                          endStation: endStation,
+                        );
+                      }),
+                    );
+                  }
                 },
                 child: Text(
                   "좌석 선택",
@@ -82,12 +84,18 @@ class _HomePageState extends State<HomePage> {
     String station,
   ) {
     return GestureDetector(
-      onTap: () => Navigator.push(
-        context,
-        MaterialPageRoute(builder: (context) {
-          return StationListPage(title);
-        }),
-      ),
+      onTap: () async {
+        var selectedStation = await Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) {
+            return StationListPage(title);
+          }),
+        );
+        setState(() {
+          if (title == "출발역") startStation = selectedStation;
+          if (title == "도착역") endStation = selectedStation;
+        });
+      },
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
