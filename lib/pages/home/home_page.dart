@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_train_app/pages/station_list/station_list_page.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -65,23 +66,31 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
-  Column stationBox(
+  Widget stationBox(
     String title,
     String station,
   ) {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        Text(
-          title,
-          style: TextStyle(
-              fontSize: 16, color: Colors.grey, fontWeight: FontWeight.bold),
-        ),
-        Text(
-          station == "" ? "선택" : station,
-          style: TextStyle(fontSize: 40),
-        ),
-      ],
+    return GestureDetector(
+      onTap: () => Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) {
+          return StationListPage(title);
+        }),
+      ),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Text(
+            title,
+            style: TextStyle(
+                fontSize: 16, color: Colors.grey, fontWeight: FontWeight.bold),
+          ),
+          Text(
+            station == "" ? "선택" : station,
+            style: TextStyle(fontSize: 40),
+          ),
+        ],
+      ),
     );
   }
 }

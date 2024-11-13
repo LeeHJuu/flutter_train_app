@@ -3,7 +3,11 @@ import 'package:flutter/material.dart';
 class SeatPage extends StatelessWidget{
   @override
   Widget build(BuildContext context) {
-    // TODO: implement build
-    throw UnimplementedError();
+    return Scaffold(
+      appBar: AppBar(
+        centerTitle: true,
+        title: Text("출발역"),
+      ),
+    );
   }
 }
