@@ -84,13 +84,17 @@ class _HomePageState extends State<HomePage> {
         var selectedStation = await Navigator.push(
           context,
           MaterialPageRoute(builder: (context) {
-            return StationListPage(title);
+            var oppositeStaton;
+            if (title == "출발역") oppositeStaton = endStation;
+            if (title == "도착역") oppositeStaton = startStation;
+            return StationListPage(title, oppositeStaton);
           }),
         );
         setState(() {
-          // Todo: 반환하는 역이 없을 시의 예외처리.
-          if (title == "출발역") startStation = selectedStation;
-          if (title == "도착역") endStation = selectedStation;
+          if (title == "출발역" && selectedStation != null)
+            startStation = selectedStation;
+          if (title == "도착역" && selectedStation != null)
+            endStation = selectedStation;
         });
       },
       child: Column(

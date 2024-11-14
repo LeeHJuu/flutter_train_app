@@ -3,10 +3,15 @@ import 'package:flutter_train_app/pages/station_list/station_list.dart';
 
 class StationListPage extends StatelessWidget {
   String title;
-  StationListPage(this.title);
+  String selectedStation;
+
+  StationListPage(this.title, this.selectedStation);
 
   @override
   Widget build(BuildContext context) {
+    List<String> filteredStationList = [...stationList];
+    filteredStationList.remove(selectedStation);
+
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
@@ -25,7 +30,8 @@ class StationListPage extends StatelessWidget {
           // stationItem("무슨역"),
           // stationItem("무슨역"),
           // stationItem("무슨역"),
-          for (String station in stationList) stationItem("${station}", context),
+          for (String station in filteredStationList)
+            stationItem("${station}", context),
         ],
       ),
     );

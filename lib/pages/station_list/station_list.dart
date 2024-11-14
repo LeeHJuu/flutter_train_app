@@ -1,4 +1,4 @@
-final stationList = [
+final List<String> stationList = [
   "수서",
   "동탄",
   "평택지제",
