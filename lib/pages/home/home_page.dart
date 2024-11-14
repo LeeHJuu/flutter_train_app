@@ -18,7 +18,7 @@ class _HomePageState extends State<HomePage> {
         centerTitle: true,
         title: Text("기차 예매"),
       ),
-      backgroundColor: Colors.grey[200],
+      backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 20),
         child: Column(
@@ -28,7 +28,7 @@ class _HomePageState extends State<HomePage> {
               // color: Colors.white,
               height: 200,
               decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(20), color: Colors.white),
+                  borderRadius: BorderRadius.circular(20), color: Theme.of(context).canvasColor),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [

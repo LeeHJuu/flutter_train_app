@@ -85,7 +85,10 @@ class _SeatPageState extends State<SeatPage> {
                               },
                             ),
                             CupertinoDialogAction(
-                              child: Text("확인", style: TextStyle(color: Colors.blue),),
+                              child: Text(
+                                "확인",
+                                style: TextStyle(color: Colors.blue),
+                              ),
                               isDefaultAction: true,
                               onPressed: () {
                                 Navigator.pop(context);
@@ -172,8 +175,9 @@ class _SeatPageState extends State<SeatPage> {
           width: 50,
           height: 50,
           decoration: BoxDecoration(
-            color:
-                selected ? Theme.of(context).highlightColor : Colors.grey[300]!,
+            color: selected
+                ? Theme.of(context).highlightColor
+                : Theme.of(context).cardColor,
             borderRadius: BorderRadius.circular(8),
           ),
         ),
@@ -187,9 +191,9 @@ class _SeatPageState extends State<SeatPage> {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          label("선택됨", Colors.purple),
+          label("선택됨", Theme.of(context).highlightColor),
           SizedBox(width: 20),
-          label("선택안됨", Colors.grey[300]!),
+          label("선택안됨", Theme.of(context).cardColor),
         ],
       ),
     );
