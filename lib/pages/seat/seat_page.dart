@@ -1,6 +1,7 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-class SeatPage extends StatelessWidget {
+class SeatPage extends StatefulWidget {
   String startStation;
   String endStation;
 
@@ -8,6 +9,25 @@ class SeatPage extends StatelessWidget {
     required this.startStation,
     required this.endStation,
   });
+
+  @override
+  State<SeatPage> createState() => _SeatPageState();
+}
+
+class _SeatPageState extends State<SeatPage> {
+  List<String> selectedSeatList = [];
+
+  void onTapSeatItem(String seat) {
+    setState(() {
+      if (selectedSeatList.contains(seat)) {
+        selectedSeatList.remove(seat);
+      } else {
+        selectedSeatList.add(seat);
+      }
+      print(seat);
+      print(selectedSeatList);
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -26,6 +46,7 @@ class SeatPage extends StatelessWidget {
             Expanded(
               child: ListView(
                 children: [
+                  // 좌석 인덱스 안내
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
@@ -36,7 +57,8 @@ class SeatPage extends StatelessWidget {
                       seatLabel("D"),
                     ],
                   ),
-                  for (var i = 1; i <= 20; i++) seatRow(i),
+                  // 반복문으로 20줄의 좌석 배치.
+                  for (var i = 1; i <= 20; i++) seatRow(i, context),
                 ],
               ),
             ),
@@ -45,7 +67,36 @@ class SeatPage extends StatelessWidget {
               height: 56,
               child: ElevatedButton(
                 onPressed: () {
-                  Navigator.pop(context);
+                  // 선택좌석 있는 경우만 동작.
+                  if (selectedSeatList.isNotEmpty) {
+                    showCupertinoDialog(
+                      context: context,
+                      builder: (context) {
+                        return CupertinoAlertDialog(
+                          title: Text("예매하시겠습니까?"),
+                          content: Text(
+                              "좌석 : ${selectedSeatList.toSet().join(", ")}"),
+                          actions: [
+                            CupertinoDialogAction(
+                              child: Text("취소"),
+                              isDestructiveAction: true,
+                              onPressed: () {
+                                Navigator.pop(context);
+                              },
+                            ),
+                            CupertinoDialogAction(
+                              child: Text("확인"),
+                              isDefaultAction: true,
+                              onPressed: () {
+                                Navigator.pop(context);
+                                Navigator.pop(context);
+                              },
+                            ),
+                          ],
+                        );
+                      },
+                    );
+                  }
                 },
                 child: Text(
                   "예매 하기",
@@ -79,12 +130,15 @@ class SeatPage extends StatelessWidget {
     );
   }
 
-  Row seatRow(int line) {
+  Row seatRow(
+    int line,
+    BuildContext context,
+  ) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        seatItem(),
-        seatItem(),
+        seatItem(line, "A", context),
+        seatItem(line, "B", context),
         SizedBox.square(
           dimension: 50,
           child: Center(
@@ -95,21 +149,33 @@ class SeatPage extends StatelessWidget {
             ),
           ),
         ),
-        seatItem(),
-        seatItem(),
+        seatItem(line, "C", context),
+        seatItem(line, "D", context),
       ],
     );
   }
 
-  Widget seatItem() {
+  Widget seatItem(
+    int line,
+    String label,
+    BuildContext context,
+  ) {
+    bool selected =
+        selectedSeatList.contains("${line}-${label}") ? true : false;
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: 2, vertical: 4),
-      child: Container(
-        width: 50,
-        height: 50,
-        decoration: BoxDecoration(
-          color: Colors.grey[300]!,
-          borderRadius: BorderRadius.circular(8),
+      child: GestureDetector(
+        onTap: () {
+          onTapSeatItem("${line}-${label}");
+        },
+        child: Container(
+          width: 50,
+          height: 50,
+          decoration: BoxDecoration(
+            color:
+                selected ? Theme.of(context).highlightColor : Colors.grey[300]!,
+            borderRadius: BorderRadius.circular(8),
+          ),
         ),
       ),
     );
@@ -149,7 +215,7 @@ class SeatPage extends StatelessWidget {
       children: [
         Expanded(
           child: Text(
-            startStation,
+            widget.startStation,
             textAlign: TextAlign.center,
             style: TextStyle(
               fontSize: 30,
@@ -164,7 +230,7 @@ class SeatPage extends StatelessWidget {
         ),
         Expanded(
           child: Text(
-            endStation,
+            widget.endStation,
             textAlign: TextAlign.center,
             style: TextStyle(
               fontSize: 30,
