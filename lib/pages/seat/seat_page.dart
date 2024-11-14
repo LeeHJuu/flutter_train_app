@@ -85,7 +85,7 @@ class _SeatPageState extends State<SeatPage> {
                               },
                             ),
                             CupertinoDialogAction(
-                              child: Text("확인"),
+                              child: Text("확인", style: TextStyle(color: Colors.blue),),
                               isDefaultAction: true,
                               onPressed: () {
                                 Navigator.pop(context);

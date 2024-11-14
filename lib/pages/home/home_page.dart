@@ -32,17 +32,13 @@ class _HomePageState extends State<HomePage> {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Spacer(),
-                  stationBox("출발역", startStation),
-                  Spacer(),
+                  Expanded(child: stationBox("출발역", startStation)),
                   Container(
                     width: 2,
                     height: 50,
                     color: Theme.of(context).dividerColor,
                   ),
-                  Spacer(),
-                  stationBox("도착역", endStation),
-                  Spacer(),
+                  Expanded(child: stationBox("도착역", endStation)),
                 ],
               ),
             ),
