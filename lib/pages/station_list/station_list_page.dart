@@ -19,17 +19,6 @@ class StationListPage extends StatelessWidget {
       ),
       body: Column(
         children: [
-          // stationItem("무슨역"),
-          // stationItem("무슨역"),
-          // stationItem("무슨역"),
-          // stationItem("무슨역"),
-          // stationItem("무슨역"),
-          // stationItem("무슨역"),
-          // stationItem("무슨역"),
-          // stationItem("무슨역"),
-          // stationItem("무슨역"),
-          // stationItem("무슨역"),
-          // stationItem("무슨역"),
           for (String station in filteredStationList)
             stationItem("${station}", context),
         ],
