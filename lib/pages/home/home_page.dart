@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_train_app/model/Booking_history.dart';
+import 'package:flutter_train_app/pages/booking_history_list_page.dart';
 import 'package:flutter_train_app/pages/seat/seat_page.dart';
 import 'package:flutter_train_app/pages/station_list/station_list_page.dart';
 
@@ -20,6 +21,19 @@ class _HomePageState extends State<HomePage> {
       appBar: AppBar(
         centerTitle: true,
         title: Text("기차 예매"),
+        actions: [
+          IconButton(
+            onPressed: () {
+              Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) {
+                return BookingHistoryListPage(bookingHistoryList);
+              }),
+            );
+            },
+            icon: Icon(Icons.history_edu),
+          ),
+        ],
       ),
       backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       body: Padding(
