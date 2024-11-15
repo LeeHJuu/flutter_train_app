@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_train_app/model/Booking_history.dart';
 
 class SeatPage extends StatefulWidget {
   String startStation;
@@ -43,7 +44,7 @@ class _SeatPageState extends State<SeatPage> {
           children: [
             // 출발역 - 도착역 표시
             selectedStationsDisplay(context),
-            
+
             // 선택/미선택 좌석 컬러 안내
             seatColorInfo(),
 
@@ -100,7 +101,13 @@ class _SeatPageState extends State<SeatPage> {
                     isDefaultAction: true,
                     onPressed: () {
                       Navigator.pop(context);
-                      Navigator.pop(context);
+                      Navigator.pop(
+                        context,
+                        BookingHistory(
+                            startStation: widget.startStation,
+                            endStation: widget.endStation,
+                            selectedSeatList: selectedSeatList),
+                      );
                     },
                   ),
                 ],

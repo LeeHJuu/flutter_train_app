@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_train_app/model/Booking_history.dart';
 import 'package:flutter_train_app/pages/seat/seat_page.dart';
 import 'package:flutter_train_app/pages/station_list/station_list_page.dart';
 
@@ -10,6 +11,8 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   String startStation = "";
   String endStation = "";
+
+  List<BookingHistory> bookingHistoryList = [];
 
   @override
   Widget build(BuildContext context) {
@@ -103,9 +106,9 @@ class _HomePageState extends State<HomePage> {
 
   ElevatedButton goToSeatSelectionButton(BuildContext context) {
     return ElevatedButton(
-      onPressed: () {
+      onPressed: () async {
         if (startStation != "" && endStation != "") {
-          Navigator.push(
+          BookingHistory history = await Navigator.push(
             context,
             MaterialPageRoute(builder: (context) {
               return SeatPage(
@@ -114,8 +117,28 @@ class _HomePageState extends State<HomePage> {
               );
             }),
           );
+
+          if (history != null) bookingHistoryList.add(history);
+          print(bookingHistoryList);
         }
       },
+      // onTap: () async {
+      //   var selectedStation = await Navigator.push(
+      //     context,
+      //     MaterialPageRoute(builder: (context) {
+      //       var oppositeStaton;
+      //       if (title == "출발역") oppositeStaton = endStation;
+      //       if (title == "도착역") oppositeStaton = startStation;
+      //       return StationListPage(title, oppositeStaton);
+      //     }),
+      //   );
+      //   setState(() {
+      //     if (title == "출발역" && selectedStation != null)
+      //       startStation = selectedStation;
+      //     if (title == "도착역" && selectedStation != null)
+      //       endStation = selectedStation;
+      //   });
+      // },
       child: Text(
         "좌석 선택",
         style: TextStyle(
