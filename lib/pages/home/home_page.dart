@@ -122,23 +122,6 @@ class _HomePageState extends State<HomePage> {
           print(bookingHistoryList);
         }
       },
-      // onTap: () async {
-      //   var selectedStation = await Navigator.push(
-      //     context,
-      //     MaterialPageRoute(builder: (context) {
-      //       var oppositeStaton;
-      //       if (title == "출발역") oppositeStaton = endStation;
-      //       if (title == "도착역") oppositeStaton = startStation;
-      //       return StationListPage(title, oppositeStaton);
-      //     }),
-      //   );
-      //   setState(() {
-      //     if (title == "출발역" && selectedStation != null)
-      //       startStation = selectedStation;
-      //     if (title == "도착역" && selectedStation != null)
-      //       endStation = selectedStation;
-      //   });
-      // },
       child: Text(
         "좌석 선택",
         style: TextStyle(
