@@ -16,7 +16,7 @@ class _SeatPageState extends State<BookingHistoryPage> {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        title: Text("좌석 선택"),
+        title: Text("예매 기록"),
       ),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 20),

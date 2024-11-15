@@ -16,8 +16,8 @@ class BookingHistoryListPage extends StatelessWidget {
       ),
       body: Column(
         children: [
-          // 역 리스트 출력
-          for (BookingHistory history in bookingHistoryList)
+          // 역 리스트 출력(역순으로)
+          for (BookingHistory history in bookingHistoryList.reversed)
             historyItem(history, context),
         ],
       ),

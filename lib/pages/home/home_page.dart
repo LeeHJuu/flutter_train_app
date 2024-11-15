@@ -122,7 +122,7 @@ class _HomePageState extends State<HomePage> {
     return ElevatedButton(
       onPressed: () async {
         if (startStation != "" && endStation != "") {
-          BookingHistory history = await Navigator.push(
+          BookingHistory? history = await Navigator.push(
             context,
             MaterialPageRoute(builder: (context) {
               return SeatPage(
