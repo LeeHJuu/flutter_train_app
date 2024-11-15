@@ -24,50 +24,16 @@ class _HomePageState extends State<HomePage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Container(
-              // color: Colors.white,
-              height: 200,
-              decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(20), color: Theme.of(context).canvasColor),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Expanded(child: stationBox("출발역", startStation)),
-                  Container(
-                    width: 2,
-                    height: 50,
-                    color: Theme.of(context).dividerColor,
-                  ),
-                  Expanded(child: stationBox("도착역", endStation)),
-                ],
-              ),
-            ),
+            // 출발역 - 도착역 선택 박스
+            stationSelectionContainer(context),
+
             SizedBox(height: 20),
+
+            // 좌석 선택 버튼
             SizedBox(
               width: double.infinity,
               height: 56,
-              child: ElevatedButton(
-                onPressed: () {
-                  if (startStation != "" && endStation != "") {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) {
-                        return SeatPage(
-                          startStation: startStation,
-                          endStation: endStation,
-                        );
-                      }),
-                    );
-                  }
-                },
-                child: Text(
-                  "좌석 선택",
-                  style: TextStyle(
-                    fontSize: 18,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-              ),
+              child: goToSeatSelectionButton(context),
             ),
           ],
         ),
@@ -75,7 +41,28 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
-  Widget stationBox(
+  Container stationSelectionContainer(BuildContext context) {
+    return Container(
+      height: 200,
+      decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(20),
+          color: Theme.of(context).canvasColor),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Expanded(child: stationSelectionBox("출발역", startStation)),
+          Container(
+            width: 2,
+            height: 50,
+            color: Theme.of(context).dividerColor,
+          ),
+          Expanded(child: stationSelectionBox("도착역", endStation)),
+        ],
+      ),
+    );
+  }
+
+  Widget stationSelectionBox(
     String title,
     String station,
   ) {
@@ -110,6 +97,31 @@ class _HomePageState extends State<HomePage> {
             style: TextStyle(fontSize: 40),
           ),
         ],
+      ),
+    );
+  }
+
+  ElevatedButton goToSeatSelectionButton(BuildContext context) {
+    return ElevatedButton(
+      onPressed: () {
+        if (startStation != "" && endStation != "") {
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) {
+              return SeatPage(
+                startStation: startStation,
+                endStation: endStation,
+              );
+            }),
+          );
+        }
+      },
+      child: Text(
+        "좌석 선택",
+        style: TextStyle(
+          fontSize: 18,
+          fontWeight: FontWeight.bold,
+        ),
       ),
     );
   }

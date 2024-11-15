@@ -9,6 +9,7 @@ class StationListPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // 출발/도착역 필터링
     List<String> filteredStationList = [...stationList];
     filteredStationList.remove(selectedStation);
 
@@ -19,6 +20,7 @@ class StationListPage extends StatelessWidget {
       ),
       body: Column(
         children: [
+          // 역 리스트 출력
           for (String station in filteredStationList)
             stationItem("${station}", context),
         ],

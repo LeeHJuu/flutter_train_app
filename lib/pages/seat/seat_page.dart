@@ -41,74 +41,29 @@ class _SeatPageState extends State<SeatPage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            showSelectedStations(context),
+            // 출발역 - 도착역 표시
+            selectedStationsDisplay(context),
+            
+            // 선택/미선택 좌석 컬러 안내
             seatColorInfo(),
+
             Expanded(
               child: ListView(
                 children: [
                   // 좌석 인덱스 안내
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      seatLabel("A"),
-                      seatLabel("B"),
-                      SizedBox.square(dimension: 50),
-                      seatLabel("C"),
-                      seatLabel("D"),
-                    ],
-                  ),
+                  seatLabelRow(),
+
                   // 반복문으로 20줄의 좌석 배치.
                   for (var i = 1; i <= 20; i++) seatRow(i, context),
                 ],
               ),
             ),
+
+            // 예매하기 버튼
             SizedBox(
               width: double.infinity,
               height: 56,
-              child: ElevatedButton(
-                onPressed: () {
-                  // 선택좌석 있는 경우만 동작.
-                  if (selectedSeatList.isNotEmpty) {
-                    showCupertinoDialog(
-                      context: context,
-                      builder: (context) {
-                        return CupertinoAlertDialog(
-                          title: Text("예매하시겠습니까?"),
-                          content: Text(
-                              "좌석 : ${selectedSeatList.toSet().join(", ")}"),
-                          actions: [
-                            CupertinoDialogAction(
-                              child: Text("취소"),
-                              isDestructiveAction: true,
-                              onPressed: () {
-                                Navigator.pop(context);
-                              },
-                            ),
-                            CupertinoDialogAction(
-                              child: Text(
-                                "확인",
-                                style: TextStyle(color: Colors.blue),
-                              ),
-                              isDefaultAction: true,
-                              onPressed: () {
-                                Navigator.pop(context);
-                                Navigator.pop(context);
-                              },
-                            ),
-                          ],
-                        );
-                      },
-                    );
-                  }
-                },
-                child: Text(
-                  "예매 하기",
-                  style: TextStyle(
-                    fontSize: 18,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-              ),
+              child: bookingButton(context),
             ),
             SizedBox(height: 20)
           ],
@@ -117,7 +72,67 @@ class _SeatPageState extends State<SeatPage> {
     );
   }
 
-  Widget seatLabel(String label) {
+  ElevatedButton bookingButton(BuildContext context) {
+    return ElevatedButton(
+      onPressed: () {
+        // 선택좌석 있는 경우만 동작.
+        if (selectedSeatList.isNotEmpty) {
+          showCupertinoDialog(
+            context: context,
+            builder: (context) {
+              // Cupertino Dialog 출력
+              return CupertinoAlertDialog(
+                title: Text("예매하시겠습니까?"),
+                content: Text("좌석 : ${selectedSeatList.toSet().join(", ")}"),
+                actions: [
+                  CupertinoDialogAction(
+                    child: Text("취소"),
+                    isDestructiveAction: true,
+                    onPressed: () {
+                      Navigator.pop(context);
+                    },
+                  ),
+                  CupertinoDialogAction(
+                    child: Text(
+                      "확인",
+                      style: TextStyle(color: Colors.blue),
+                    ),
+                    isDefaultAction: true,
+                    onPressed: () {
+                      Navigator.pop(context);
+                      Navigator.pop(context);
+                    },
+                  ),
+                ],
+              );
+            },
+          );
+        }
+      },
+      child: Text(
+        "예매 하기",
+        style: TextStyle(
+          fontSize: 18,
+          fontWeight: FontWeight.bold,
+        ),
+      ),
+    );
+  }
+
+  Row seatLabelRow() {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        seatColumnLabel("A"),
+        seatColumnLabel("B"),
+        SizedBox.square(dimension: 50),
+        seatColumnLabel("C"),
+        seatColumnLabel("D"),
+      ],
+    );
+  }
+
+  Widget seatColumnLabel(String label) {
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: 2, vertical: 4),
       child: SizedBox.square(
@@ -191,15 +206,15 @@ class _SeatPageState extends State<SeatPage> {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          label("선택됨", Theme.of(context).highlightColor),
+          colorInfoItem("선택됨", Theme.of(context).highlightColor),
           SizedBox(width: 20),
-          label("선택안됨", Theme.of(context).cardColor),
+          colorInfoItem("선택안됨", Theme.of(context).cardColor),
         ],
       ),
     );
   }
 
-  Row label(String text, Color color) {
+  Row colorInfoItem(String text, Color color) {
     return Row(
       children: [
         Container(
@@ -214,7 +229,7 @@ class _SeatPageState extends State<SeatPage> {
     );
   }
 
-  Row showSelectedStations(BuildContext context) {
+  Row selectedStationsDisplay(BuildContext context) {
     return Row(
       children: [
         Expanded(
