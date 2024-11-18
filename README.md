@@ -1,16 +1,37 @@
-# flutter_train_app
+# Flutter Train App
+기차표를 예매하는 어플입니다.
 
-A new Flutter project.
+## 📋 기능
 
-## Getting Started
+- 출발역/도착역 선택
+- 좌석 선택 후 예매
+- 좌석 예매 기록 조회
 
-This project is a starting point for a Flutter application.
+## 🛠️ 기술 스택
 
-A few resources to get you started if this is your first Flutter project:
+- **프레임워크**: Flutter
+- **언어**: Dart
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+## 🚀 시작하기
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+이 어플을 실행하기 위해서는 Flutter와 Dart가 설치되어 있어야 합니다. [Flutter 설치 가이드](https://flutter.dev/docs/get-started/install)에서 필요한 환경 설정을 완료해주세요.
+
+### 설치 및 실행
+
+1. **저장소 클론**:
+   ```bash
+   git clone https://github.com/LeeHJuu/flutter_train_app.git
+   cd flutter_train_app
+2.  **의존성 패키지 설치**:
+    ```bash 
+      flutter pub add
+3.  **어플 실행**:
+    ```bash 
+      flutter run
+## 📸 스크린샷
+
+### 메인 화면
+
+### 좌석 선택 화면
+
+### 예매 확인 화면
