@@ -31,7 +31,12 @@
 ## 📸 스크린샷
 
 ### 메인 화면
+![image](https://github.com/user-attachments/assets/12080f94-ca60-4ae3-9ac2-ccb828251049)
+![image](https://github.com/user-attachments/assets/43c87a50-b595-46a9-a85a-3862360542a0)
 
 ### 좌석 선택 화면
+![image](https://github.com/user-attachments/assets/4304b93b-6fa1-492b-8509-1cc0431f4143)
 
 ### 예매 확인 화면
+![image](https://github.com/user-attachments/assets/991aae9d-786b-41b0-8137-702701cc7de3)
+![image](https://github.com/user-attachments/assets/7661ecb0-0148-48d6-8b3d-3023b91299b2)
