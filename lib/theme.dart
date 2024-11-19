@@ -7,7 +7,8 @@ final lightTheme = ThemeData(
   highlightColor: Colors.purple,
   cardColor: Colors.grey[300],
   canvasColor: Colors.white,
-  scaffoldBackgroundColor: Colors.grey[200],
+  // scaffoldBackgroundColor: Colors.grey[200],
+  hintColor: Colors.grey[200],
   elevatedButtonTheme: ElevatedButtonThemeData(
     style: ButtonStyle(
       shape: WidgetStatePropertyAll(
