@@ -104,7 +104,8 @@ class _SeatPageState extends State<SeatPage> {
                         BookingHistory(
                             startStation: widget.startStation,
                             endStation: widget.endStation,
-                            selectedSeatList: selectedSeatList),
+                            selectedSeatList: selectedSeatList,
+                            dateTime: DateTime.now()),
                       );
                     },
                   ),

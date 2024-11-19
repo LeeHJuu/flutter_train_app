@@ -45,9 +45,15 @@ class BookingHistoryListPage extends StatelessWidget {
               }),
             );
           },
-          child: Text(
-            "${history.startStation} - ${history.endStation}",
-            style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text(
+                "${history.startStation} - ${history.endStation}",
+                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+              ),
+              Text(history.dateTime.toString()),
+            ],
           ),
         ),
       ),
