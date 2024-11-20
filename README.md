@@ -24,7 +24,7 @@
    cd flutter_train_app
 2.  **의존성 패키지 설치**:
     ```bash 
-      flutter pub add
+      flutter pub add intl
 3.  **어플 실행**:
     ```bash 
       flutter run
