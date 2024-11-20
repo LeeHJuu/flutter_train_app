@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_train_app/model/Booking_history.dart';
 import 'package:flutter_train_app/pages/booking_history_page.dart';
+import 'package:intl/intl.dart';
 
 class BookingHistoryListPage extends StatelessWidget {
   List<BookingHistory> bookingHistoryList;
@@ -52,7 +53,11 @@ class BookingHistoryListPage extends StatelessWidget {
                 "${history.startStation} - ${history.endStation}",
                 style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
               ),
-              Text(history.dateTime.toString()),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 10),
+                child: Text(
+                    DateFormat("yyyy-MM-dd hh:mm").format(history.dateTime)),
+              ),
             ],
           ),
         ),
